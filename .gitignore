@@ -1,0 +1,26 @@
+# Node modules (if you use Node.js for any build process)
+node_modules/
+
+# Dependency directories
+bower_components/
+
+# Build output directories
+dist/
+build/
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+
+# Temporary files
+*.tmp
+
+# IDE configurations (if using VS Code or similar editors)
+.vscode/
+.idea/
+
+# Local configuration files
+.env
