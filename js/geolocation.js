@@ -4,6 +4,11 @@
 @returns Latitude + Longitude d utlisateur
 @exemple
 /return
+// Exemple d'utilisation
+autoLocate().then(coords => {
+        console.log("Latitude:", coords.latitude);
+        console.log("Longitude:", coords.longitude);
+});
 /Latitude: 33.840419
 /Longitude: -6.915962
 //autoLocate();
@@ -21,8 +26,3 @@ async function autoLocate() {
     }
 }
 
-// Exemple d'utilisation
-autoLocate().then(coords => {
-        console.log("Latitude:", coords.latitude);
-        console.log("Longitude:", coords.longitude);
-});
