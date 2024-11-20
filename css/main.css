@@ -5,40 +5,49 @@
 :root {
     --background: #060C1A;
     --todo-highlit: radial-gradient(50% 50% at 50% 50%, #162850 0%, #121A2D 100%);
-    --card-todohighlit:var(--secondery-color, #0E1421);
-    --carbackgroundtoday:linear-gradient(255.23deg, rgba(14, 20, 33, 0.5) 0.78%, rgba(29, 50, 95, 0.5) 50.49%, rgba(14, 20, 33, 0.5) 99.22%);
-    --textcolor:#FFFFFF;
-    --textfont:Inter;
-    
-  }
-  /* Background Classes */
+    --card-todohighlit: var(--secondery-color, #0E1421);
+    --carbackgroundtoday: linear-gradient(255.23deg, rgba(14, 20, 33, 0.5) 0.78%, rgba(29, 50, 95, 0.5) 50.49%, rgba(14, 20, 33, 0.5) 99.22%);
+    --textcolor: #FFFFFF;
+    --textfont: Inter;
 
-body{
-  background-color: var(--background) !important;
 }
-  .bg-background {
-  background-color: var(--background) !important;
+
+
+.dark-theme {
+    --background: #FBFCFF;
+    --text-color: #000;
+    /* todo latter after getting color pallete */
+}
+
+/* Background Classes */
+
+body {
+    background-color: var(--background) !important;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.bg-background {
+    background-color: var(--background) !important;
 }
 
 .bg-todo-highlit {
-  background: var(--todo-highlit) !important;
+    background: var(--todo-highlit) !important;
 }
 
 .bg-card-todohighlit {
-  background-color: var(--card-todohighlit) !important;
+    background-color: var(--card-todohighlit) !important;
 }
 
 .bg-carbackgroundtoday {
-  background: var(--carbackgroundtoday) !important;
+    background: var(--carbackgroundtoday) !important;
 }
 
 /* Text Color Classes */
 .text-primary {
-  color: var(--textcolor) !important;
+    color: var(--textcolor) !important;
 }
 
 /* Text Font Classes */
 .font-text {
-  font-family: var(--textfont) !important;
+    font-family: var(--textfont) !important;
 }
-

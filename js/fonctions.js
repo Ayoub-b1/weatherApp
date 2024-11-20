@@ -79,12 +79,46 @@ function showNotification(title, body, icon) {
  * //Retourne Rabat
 */
 
+
 function Ville() {
     let ville = document.getElementById("InputVille").value;
 
-    if(ville.trim() === ""){
+    if (ville.trim() === "") {
         afficherAlert('Veuillez entrer une ville valide', 'danger')
         return
     }
     return ville
+}
+
+/** 
+ * @function toggleTheme
+ * @description changer entre le mode eclaire ou sombre 
+ * 
+ * @return {void} 
+ * 
+
+*/
+
+function toggleTheme() {
+    const body = document.body;
+
+    body.classList.toggle('dark-theme');
+
+    const isDarkMode = body.classList.contains('dark-theme');
+    //TODO : implement using preference to store the preference
+}
+/** 
+ * @function applySavedTheme
+ * @description recupere le theme preferer d'utilisateur
+ * 
+ * @return {void} 
+ * 
+
+*/
+function applySavedTheme() {
+    // TODO : implement using preference to store the preference
+
+    if (savedTheme) {
+        document.body.classList.add(savedTheme);
+    }
 }
