@@ -69,9 +69,6 @@ function showNotification(title, body, icon) {
     }
 }
 
-
-
-
 /** 
  * @function Ville
  * @description Récupere la valeur de la localisation d'un input et retourne sa valeur
@@ -85,8 +82,9 @@ function showNotification(title, body, icon) {
 function Ville() {
     let ville = document.getElementById("InputVille").value;
 
-    if(ville === ""){
-        //traitement de la condition
+    if(ville.trim() === ""){
+        afficherAlert('Veuillez entrer une ville valide', 'danger')
+        return
     }
     return ville
 }
