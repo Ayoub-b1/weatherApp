@@ -140,18 +140,24 @@ function applySavedTheme() {
  
  */
 
-export function localStock(key, value) {
-
+export async function localStock(key, value) {
     if (key === null || value == null) {
         console.log("Parametre de fonction non définie")
         return
     }
-    if (typeof key !== "string" || key === "" || value !== "string" || value === "") {
+    if (typeof key !== "string" || key === "" ||typeof value !== "string" || value === "") {
         console.log("Key invalide : doit etre une chaine non vide")
         return
     }
-    localStorage.setItem(key, value)
-    console.log(`Données stockée : clé = ${key} , valeur = ${value}`)
+    try {
+        await new Promise((resolve) => {
+                localStorage.setItem(key, value)
+                resolve()
+            console.log(`Données stockée : clé = ${key} , valeur = ${value}`)
+        })
+    }catch(error){
+        console.log("Erreur de stockage",error)
+    }  
 }
 
 /**
@@ -189,7 +195,7 @@ export function generateData(data) {
         const {
             name: location,
             main: { temp, feels_like, pressure, humidity, temp_min, temp_max },
-            weather: [{ main: weatherMain, description  }],
+            weather: [{ main: weatherMain, description }],
             wind: { speed: windSpeed, deg: windDirection }
         } = data;
 
@@ -202,7 +208,7 @@ export function generateData(data) {
             temperature: temp,
             feelsLike: feels_like,
             weather: `${weatherMain} `,
-            description : description ,
+            description: description,
             humidity: `${humidity}`,
             windSpeed: `${windSpeed} `,
             windDirection: `${windDirection}`,
