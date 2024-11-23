@@ -145,7 +145,7 @@ export async function localStock(key, value) {
         console.log("Parametre de fonction non définie")
         return
     }
-    if (typeof key !== "string" || key === "" || value !== "string" || value === "") {
+    if (typeof key !== "string" || key === "" ||typeof value !== "string" || value === "") {
         console.log("Key invalide : doit etre une chaine non vide")
         return
     }
