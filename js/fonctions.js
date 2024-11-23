@@ -213,3 +213,41 @@ export function generateData(data) {
     // Return null if data is invalid
     return null;
 }
+
+
+
+
+/**
+ * @function localRetrieve
+ * @description Une fonction qui permet de returner des données key  du le localStorage du navigateur. 
+ * @param {string} key - Le cle pour la valeur souhaiter
+ * 
+ * @returns {string} La fonction  retourne value de la key,
+
+ * @example
+ * const username = await localRetrieve("username");
+ */
+
+
+export async function localRetrieve(key) {
+    if (key === null || typeof key !== "string" || key === "") {
+        console.log("Clé invalide : doit être une chaîne non vide");
+        return null; 
+    }
+    try {
+        const value = await new Promise((resolve) => {
+            const data = localStorage.getItem(key);
+            resolve(data);
+        });
+        if (value === null) {
+            console.log(`Aucune donnée trouvée pour la clé : ${key}`);
+        } else {
+            console.log(`Données récupérées : clé = ${key}, valeur = ${value}`);
+        }
+        return value;
+    } catch (error) {
+        console.log("Erreur de récupération", error);
+        return null;
+    }
+}
+
