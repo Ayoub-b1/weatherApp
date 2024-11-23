@@ -122,3 +122,34 @@ function applySavedTheme() {
         document.body.classList.add(savedTheme);
     }
 }
+
+/**
+ * @function localStock
+ * @description Une fonction qui permet de stocker des données dans le localStorage du navigateur. 
+ * @param {string} key - La clé qui servira à identifier la donnée dans le `localStorage`.
+ * @param {string} value - La valeur à associer à la clé dans le `localStorage`. 
+ * 
+ * @returns {void} La fonction ne retourne aucune valeur,
+ * mais elle affiche une notification dans la console sur l'état du stockage.
+ * 
+ * @example
+ * localStock('username', 'AAAA') - Affiche : "Données stockées : clé = username , valeur = AAAA"
+ * localStock(null, 'BBBB') - Affiche : "Paramètre de fonction non défini"
+ * localStock('username', null) - Affiche : "Paramètre de fonction non défini"
+ * localStock('', '') - Affiche : "Key invalide : doit être une chaîne non vide"
+ 
+ */
+
+function localStock(key, value) {
+
+    if (key === null || value == null) {
+        console.log("Parametre de fonction non définie")
+        return
+    }
+    if (typeof key !== "string" || key === "" || value!== "string" || value === "") {
+        console.log("Key invalide : doit etre une chaine non vide")
+        return
+    }
+    localStorage.setItem(key, value)
+    console.log(`Données stockée : clé = ${key} , valeur = ${value}`)
+}

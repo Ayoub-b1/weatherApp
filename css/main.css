@@ -12,6 +12,9 @@
 
 }
 
+*{
+    font-family: var(--textfont) !important;
+}
 
 .dark-theme {
     --background: #FBFCFF;
