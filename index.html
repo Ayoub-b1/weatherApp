@@ -12,41 +12,42 @@
 
 
 <body>
-  <header>
-    <!-- Barre de recherche -->
-    <div class="search-bar">
-      <form class="form">
-        <label for="search">
-          <input class="input" type="text" id="inputville">
-          <div class="fancy-bg"></div>
-          <div class="search">
-            <svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
-              <path
-                d="M15.6725 15.1412L20 19.5M18 9.5C18 13.9183 14.4183 17.5 10 17.5C5.58172 17.5 2 13.9183 2 9.5C2 5.08172 5.58172 1.5 10 1.5C14.4183 1.5 18 5.08172 18 9.5Z"
-                stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-            </svg>
+  <header class="p-4 mb-4 rounded-2">
+    <div class="container  d-flex justify-content-between align-items-center">
+      <!-- Barre de recherche -->
+      <div class="search-bar">
+        <form class="form">
+          <label for="search" class="w-100">
+            <input class="input" type="text" id="inputville">
+            <div class="fancy-bg"></div>
+            <div class="search">
+              <svg width="22" height="21" viewBox="0 0 22 21" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="M15.6725 15.1412L20 19.5M18 9.5C18 13.9183 14.4183 17.5 10 17.5C5.58172 17.5 2 13.9183 2 9.5C2 5.08172 5.58172 1.5 10 1.5C14.4183 1.5 18 5.08172 18 9.5Z"
+                  stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
+              </svg>
+            </div>
+
+          </label>
+        </form>
+      </div>
+
+
+      <div>
+        <label class="switch" for="switch">
+          <input id="switch" type="checkbox" class="circle" />
+          <svg viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg" class="moon svg">
+
+            <path
+              d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z">
+            </path>
+          </svg>
+          <div class="sun svg">
+            <span class="dot"></span>
           </div>
-
         </label>
-      </form>
+      </div>
     </div>
-
-
-    <div>
-      <label class="switch" for="switch">
-        <input id="switch" type="checkbox" class="circle" />
-        <svg viewBox="0 0 384 512" xmlns="http://www.w3.org/2000/svg" class="moon svg">
-
-          <path
-            d="M223.5 32C100 32 0 132.3 0 256S100 480 223.5 480c60.6 0 115.5-24.2 155.8-63.4c5-4.9 6.3-12.5 3.1-18.7s-10.1-9.7-17-8.5c-9.8 1.7-19.8 2.6-30.1 2.6c-96.9 0-175.5-78.8-175.5-176c0-65.8 36-123.1 89.3-153.3c6.1-3.5 9.2-10.5 7.7-17.3s-7.3-11.9-14.3-12.5c-6.3-.5-12.6-.8-19-.8z">
-          </path>
-        </svg>
-        <div class="sun svg">
-          <span class="dot"></span>
-        </div>
-      </label>
-    </div>
-
   </header>
   <section>
     <div class="container">
