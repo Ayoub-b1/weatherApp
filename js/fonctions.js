@@ -189,7 +189,7 @@ export function generateData(data) {
         const {
             name: location,
             main: { temp, feels_like, pressure, humidity, temp_min, temp_max },
-            weather: [{ main: weatherMain, desciption }],
+            weather: [{ main: weatherMain, description  }],
             wind: { speed: windSpeed, deg: windDirection }
         } = data;
 
@@ -202,7 +202,7 @@ export function generateData(data) {
             temperature: temp,
             feelsLike: feels_like,
             weather: `${weatherMain} `,
-            desciption: desciption,
+            description : description ,
             humidity: `${humidity}`,
             windSpeed: `${windSpeed} `,
             windDirection: `${windDirection}`,
