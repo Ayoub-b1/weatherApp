@@ -1,6 +1,6 @@
 /* Style principal du widget météo */
 .widget {
-    background: linear-gradient(145deg, #162850, #121A2D);
+    background: var(--todo-highlit);
     color: white;
     border-radius: 40px;
     width: 676px;

@@ -140,16 +140,76 @@ function applySavedTheme() {
  
  */
 
-function localStock(key, value) {
+export function localStock(key, value) {
 
     if (key === null || value == null) {
         console.log("Parametre de fonction non définie")
         return
     }
-    if (typeof key !== "string" || key === "" || value!== "string" || value === "") {
+    if (typeof key !== "string" || key === "" || value !== "string" || value === "") {
         console.log("Key invalide : doit etre une chaine non vide")
         return
     }
     localStorage.setItem(key, value)
     console.log(`Données stockée : clé = ${key} , valeur = ${value}`)
+}
+
+/**
+ * @function generateData
+ * @description Extracts and processes necessary information from a weather data JSON object.
+ * @param {object} data - A JSON object containing weather data.
+ * @returns {object} An object with selected and formatted data values.
+ * 
+ * @example
+ * const weatherData = {
+ *     coord: { lon: -7.6, lat: 33.582 },
+ *     weather: [{ id: 800, main: "Clear", description: "clear sky", icon: "01d" }],
+ *     main: { temp: 302.24, feels_like: 300.63, pressure: 1017, humidity: 18 },
+ *     wind: { speed: 4.12, deg: 140 },
+ *     name: "Casablanca",
+ * };
+ * const result = generateData(weatherData);
+ * console.log(result);
+ * // Output:
+ * // {
+ * //   location: "Casablanca",
+ * //   temperature: "29.1",
+ * //   feelsLike: "27.5",
+ * //   weather: "Clear (clear sky)",
+ * //   humidity: "18%",
+ * //   windSpeed: "4.12 m/s",
+ * //   windDirection: "140°"
+ * ....
+ * // }
+ */
+
+export function generateData(data) {
+    if (data) {
+        // Extract necessary information
+        const {
+            name: location,
+            main: { temp, feels_like, pressure, humidity, temp_min, temp_max },
+            weather: [{ main: weatherMain, desciption }],
+            wind: { speed: windSpeed, deg: windDirection }
+        } = data;
+
+
+        // Return a formatted object
+        return {
+            location,
+            high: temp_max,
+            min: temp_min,
+            temperature: temp,
+            feelsLike: feels_like,
+            weather: `${weatherMain} `,
+            desciption: desciption,
+            humidity: `${humidity}`,
+            windSpeed: `${windSpeed} `,
+            windDirection: `${windDirection}`,
+            pressure: `${pressure}`
+        };
+    }
+
+    // Return null if data is invalid
+    return null;
 }
