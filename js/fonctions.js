@@ -119,9 +119,9 @@ export  async function  applySavedTheme  ()  {
     let theme_switch = document.getElementById('switch');
     const theme = await localRetrieve('theme')
     theme_switch.setAttribute('checked' , theme === 'ligth')
-    if (theme) {
+    if (theme && theme === 'ligth') {
         
-        document.body.classList.add(theme === 'ligth' ? 'light-theme' : '')   
+        document.body.classList.add('light-theme')   
     }
     theme_switch.addEventListener('click', () => {
         toggleTheme()
