@@ -99,13 +99,13 @@ function Ville() {
 
 */
 
-function toggleTheme() {
+export function toggleTheme() {
     const body = document.body;
 
-    body.classList.toggle('dark-theme');
+    body.classList.toggle('light-theme');
 
-    const isDarkMode = body.classList.contains('dark-theme');
-    //TODO : implement using preference to store the preference
+    const isLightTheme = body.classList.contains('light-theme');
+    localStock('theme', isLightTheme ? 'ligth' : 'dark');
 }
 /** 
  * @function applySavedTheme
@@ -115,12 +115,17 @@ function toggleTheme() {
  * 
 
 */
-function applySavedTheme() {
-    // TODO : implement using preference to store the preference
-
-    if (savedTheme) {
-        document.body.classList.add(savedTheme);
+export  async function  applySavedTheme  ()  {
+    let theme_switch = document.getElementById('switch');
+    const theme = await localRetrieve('theme')
+    theme_switch.setAttribute('checked' , theme === 'ligth')
+    if (theme) {
+        
+        document.body.classList.add(theme === 'ligth' ? 'light-theme' : '')   
     }
+    theme_switch.addEventListener('click', () => {
+        toggleTheme()
+    })
 }
 
 /**

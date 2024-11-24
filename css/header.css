@@ -70,13 +70,7 @@ svg {
 /* Icônes du mode sombre/clair */
 
 .switch {
-  --transition: 300ms;
-  --transition500: 500ms;
-  --color-dark: #0c0f14;
-  --color-darkGray: #ffffff;
-  --color-gray: #1a1a1b;
-  --color-offwhite: #cecece;
-  --shadow-color: var(--color-dark);
+ 
   position: relative;
   display: flex;
   align-items: center;
@@ -110,6 +104,7 @@ svg {
   border-radius: 50%;
   left: calc(100% - 21.5px);
   top: 15px;
+  
   display: flex;
   align-items: center;
   justify-content: center;
@@ -125,7 +120,6 @@ svg {
   height: 3px;
   border-radius: 50%;
   background: var(--color-dark);
-  background: white;
   z-index: 1;
   box-shadow: 11px 0px 0px var(--shadow-color),
     10.3px 0px 0px var(--shadow-color), -11px 0px 0px var(--shadow-color),
@@ -147,7 +141,7 @@ svg {
   width: 10px;
   height: 10px;
   border-radius: 50%;
-  background: white;
+  background: var(--shadow-color);
   border: 2px solid var(--color-dark);
 }
 
@@ -166,7 +160,7 @@ svg {
 }
 
 .switch:has(.circle:checked) {
-  background: var(--color-offwhite);
+  background: var(--input-bg-color);
 }
 
 /* .switch .circle:hover {
@@ -178,7 +172,7 @@ svg {
 
 .switch .circle:checked {
   left: calc(100% - 24px);
-  background: white;
+  background: var(--color-dark);
   border-color: white;
   box-shadow: 1px 1px 30px 12px white;
 }

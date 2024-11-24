@@ -2,6 +2,9 @@
 @import url('./Alert.css');
 @import url('./widget.css');
 @import url('./header.css');
+* {
+    font-family: var(--textfont) !important;
+}
 
 :root {
     --background: #060C1A;
@@ -10,17 +13,32 @@
     --carbackgroundtoday: linear-gradient(255.23deg, rgba(14, 20, 33, 0.5) 0.78%, rgba(29, 50, 95, 0.5) 50.49%, rgba(14, 20, 33, 0.5) 99.22%);
     --textcolor: #FFFFFF;
     --textfont: Inter;
-
+    --transition: 300ms;
+    --transition500: 500ms;
+    /* Colors */
+    --input-bg-color: #0E1421;
+    --color-dark: #0c0f14;
+    --color-darkGray: #ffffff;
+    --color-gray: #1a1a1b;
+    --color-offwhite: #cecece;
+    --shadow-color: var(--color-dark);
+    /* Shadow uses --color-dark */
 }
 
-*{
-    font-family: var(--textfont) !important;
-}
 
-.dark-theme {
-    --background: #FBFCFF;
-    --text-color: #000;
-    /* todo latter after getting color pallete */
+.light-theme {
+    --background: #FBFCFF; /* Opposite of the dark background */
+    --todo-highlit: linear-gradient(145deg, #CDDDFF, #b1c8fb); /* Lighter gradient */
+    --card-todohighlit: #F0F4FF; /* Lighter secondary color */
+    --carbackgroundtoday: linear-gradient(255.23deg, rgba(240, 244, 255, 0.5) 0.78%, rgba(210, 230, 255, 0.5) 50.49%, rgba(240, 244, 255, 0.5) 99.22%); /* Softer light gradient */
+    --textcolor: #000000; /* Dark text for light backgrounds */
+    --textfont: Inter; /* Font remains consistent */
+    --input-bg-color: #CDDDFF; /* Lighter input background */
+    --color-dark: #FFFFFF; /* Inverse of dark */
+    --color-darkGray: #000000; /* Opposite of white */
+    --color-gray: #E3E9FF; /* Lighter gray */
+    --color-offwhite: #1A1A1B; /* Opposite of offwhite */
+    --shadow-color: #000; /* Invert the shadow color */
 }
 
 /* Background Classes */

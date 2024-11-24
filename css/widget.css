@@ -1,7 +1,7 @@
 /* Style principal du widget météo */
 .widget {
     background: var(--todo-highlit);
-    color: white;
+    color: var(--textcolor);
     border-radius: 40px;
     width: 676px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -13,10 +13,10 @@
 /* Badge pour afficher la localisation (le nom de la ville) */
 .location-badge {
     background: #742BEC;
-    color: white;
     padding: 8px 15px;
     border-radius: 30px;
     font-size: 16px;
+    color: #fff;
     font-weight: bold;
     max-width: 100px !important;
     height: 40px;
@@ -185,7 +185,6 @@ h1 {
     font-size: 48px;
     font-weight: bold;
     margin: 0;
-    color: #ffffff;
 }
 
 /* Style des champs de date */

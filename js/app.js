@@ -1,10 +1,16 @@
-import { generateData, localRetrieve, localStock } from "./fonctions.js";
+import { applySavedTheme, generateData, localRetrieve, localStock, toggleTheme } from "./fonctions.js";
 import { autoLocate, fetchWeatherUsingCoordinates } from "./geolocation.js";
 
 
 window.addEventListener('DOMContentLoaded', async () => {
 
+   
+
+
     let currWeather = {}
+
+
+    applySavedTheme()
     try {
 
         let latitude = await localRetrieve('latitude');
@@ -27,4 +33,8 @@ window.addEventListener('DOMContentLoaded', async () => {
     } catch (error) {
         console.log(error);
     }
+
+    
+
+
 })
