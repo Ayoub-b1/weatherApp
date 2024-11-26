@@ -5,7 +5,9 @@
 * {
     font-family: var(--textfont) !important;
 }
-
+p{
+    margin-bottom: 0 !important;
+}
 :root {
     --background: #060C1A;
     --todo-highlit: linear-gradient(145deg, #162850, #121A2D);
