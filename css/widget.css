@@ -53,13 +53,13 @@ h1 {
 }
 
 /* Conteneur pour le bouton de bascule (toggle switch) */
-.toggle-button-cover {
+/* .toggle-button-cover {
     display: table-cell;
     position: absolute;
     right: -36%;
     top: 25px;
     box-sizing: border-box;
-}
+} */
 
 /* Conteneur principal pour le bouton de bascule */
 .button-cover {
@@ -87,7 +87,6 @@ h1 {
     top: 50%;
     width: 88px;
     height: 40px;
-    margin: -30px 60px 0 auto;
     overflow: hidden;
 }
 
@@ -203,9 +202,7 @@ h1 {
 }
 
 /* Conteneur global pour les widgets et les interactions */
-.switch-container {
-    position: relative;
-}
+
 /*Conteneur des informations de meteo (en dessous de l'image)*/
 .weather-info {
     margin: -20px 30px;
@@ -251,7 +248,7 @@ h1 {
     display: flex;
     gap: 5px;
     margin: 0 !important;
-    font-size: 55px !important;
+    font-size: 50px !important;
 }
 .font-40{
     font-size: 35px  !important;

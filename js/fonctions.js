@@ -240,20 +240,20 @@ export function generateData(data) {
  * @exemple displayData(generateData, weatherData)
 
 **/
-const displayData = (generateData, weatherData) => {
+export const displayData = (generateData, weatherData) => {
     let data = generateData(weatherData)
     console.log(data)
     document.getElementById('location').textContent = data.location
     document.getElementById('icon').setAttribute("src", data.icon || "./assets/images/logo_icon.png");
-    document.getElementById('temperature').textContent = `${data.temperature}°C`
+    document.getElementById('temperature').textContent = `${data.temperature}°`
     document.getElementById('feelsLike').textContent = `Feels Like ${data.feelsLike}`
     document.getElementById('description-w1').textContent = data.description
-    document.getElementById('min-high').textContent = `High: ${data.high}°C | Low:${data.min}°C`
+    document.getElementById('min-high').textContent = `High: ${data.high}° | Low:${data.min}°`
     document.getElementById('description-w2').textContent = data.description
-    document.getElementById('pressure').textContent = `${data.pressure} hPa`
+    document.getElementById('pressure').textContent = `${data.pressure} `
     document.getElementById('humidity').textContent = `${data.humidity} %`
-    document.getElementById('wind-speed').textContent = `${data.speed}m/s`
-    document.getElementById('wind-direction').textContent = `${data.deg} °`
+    document.getElementById('wind-speed').textContent = `${data.windSpeed}`
+    document.getElementById('wind-direction').textContent = `${data.windDirection} °`
 }
 
 
