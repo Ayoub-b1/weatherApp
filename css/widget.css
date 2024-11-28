@@ -9,7 +9,11 @@
     position: relative;
 
 }
-
+#icon{
+    width: 150px;
+    height: auto;
+    objet-fit : cover;
+}
 /* Badge pour afficher la localisation (le nom de la ville) */
 .location-badge {
     background: #742BEC;

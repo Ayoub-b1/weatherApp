@@ -115,13 +115,13 @@ export function toggleTheme() {
  * 
 
 */
-export  async function  applySavedTheme  ()  {
+export async function applySavedTheme() {
     let theme_switch = document.getElementById('switch');
     const theme = await localRetrieve('theme')
     theme_switch.checked = theme === 'ligth'
     if (theme && theme === 'ligth') {
-        
-        document.body.classList.add('light-theme')   
+
+        document.body.classList.add('light-theme')
     }
     theme_switch.addEventListener('click', () => {
         toggleTheme()
@@ -150,19 +150,19 @@ export async function localStock(key, value) {
         console.log("Parametre de fonction non définie")
         return
     }
-    if (typeof key !== "string" || key === "" ||typeof value !== "string" || value === "") {
+    if (typeof key !== "string" || key === "" || typeof value !== "string" || value === "") {
         console.log("Key invalide : doit etre une chaine non vide")
         return
     }
     try {
         await new Promise((resolve) => {
-                localStorage.setItem(key, value)
-                resolve()
+            localStorage.setItem(key, value)
+            resolve()
             console.log(`Données stockée : clé = ${key} , valeur = ${value}`)
         })
-    }catch(error){
-        console.log("Erreur de stockage",error)
-    }  
+    } catch (error) {
+        console.log("Erreur de stockage", error)
+    }
 }
 
 /**
@@ -199,7 +199,7 @@ export function generateData(data) {
         // Extract necessary information
         const {
             name: location,
-            main: { temp, feels_like, pressure, humidity, temp_min, temp_max },
+            main: { temp, feels_like, pressure, humidity, temp_min, temp_max, icon },
             weather: [{ main: weatherMain, description }],
             wind: { speed: windSpeed, deg: windDirection }
         } = data;
@@ -211,6 +211,7 @@ export function generateData(data) {
             high: temp_max,
             min: temp_min,
             temperature: temp,
+            icon,
             feelsLike: feels_like,
             weather: `${weatherMain} `,
             description: description,
@@ -224,8 +225,36 @@ export function generateData(data) {
     // Return null if data is invalid
     return null;
 }
+/**
+ const weatherData = {
+     coord: { lon: -7.6, lat: 33.582 },
+     weather: [{ id: 800, main: "Clear", description: "clear sky", icon: "https://images.app.goo.gl/7JqvToCRtTL7bcFP6" }],
+     main: { temp: 30, feels_like: 30, pressure: 1017, humidity: 18, temp_min: 10, temp_max: 30 },
+     wind: { speed: 4.12, deg: 140 },
+     name: "Casablanca",
+ };
 
+ * @function displayWeather
+ * @description Affiche les donnees du temperature dans le DOM.
+ * @param {object} data .
+ * @exemple displayData(generateData, weatherData)
 
+**/
+const displayData = (generateData, weatherData) => {
+    let data = generateData(weatherData)
+    console.log(data)
+    document.getElementById('location').textContent = data.location
+    document.getElementById('icon').setAttribute("src", data.icon || "./assets/images/logo_icon.png");
+    document.getElementById('temperature').textContent = `${data.temperature}°C`
+    document.getElementById('feelsLike').textContent = `Feels Like ${data.feelsLike}`
+    document.getElementById('description-w1').textContent = data.description
+    document.getElementById('min-high').textContent = `High: ${data.high}°C | Low:${data.min}°C`
+    document.getElementById('description-w2').textContent = data.description
+    document.getElementById('pressure').textContent = `${data.pressure} hPa`
+    document.getElementById('humidity').textContent = `${data.humidity} %`
+    document.getElementById('wind-speed').textContent = `${data.speed}m/s`
+    document.getElementById('wind-direction').textContent = `${data.deg} °`
+}
 
 
 /**
@@ -243,7 +272,7 @@ export function generateData(data) {
 export async function localRetrieve(key) {
     if (key === null || typeof key !== "string" || key === "") {
         console.log("Clé invalide : doit être une chaîne non vide");
-        return null; 
+        return null;
     }
     try {
         const value = await new Promise((resolve) => {
