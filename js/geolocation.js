@@ -107,3 +107,41 @@ export function fetchWeatherUsingCoordinates(longitude, latitude) {
         xhr.send();
     });
 }
+
+/**
+ * @function fetchWeatherIn5days
+ * Fetches weather data in 5 days using the given city from the OpenWeather API.
+ * 
+ * @param {string} ville - The name of the city wanted.
+ * @returns {Promise<Object>} - A Promise that resolves to the weather data in JSON format if the request is successful.
+ * 
+ * @example
+ * fetchWeatherUsingCoordinates('Rabat')
+ *   .then(data => console.log(data))
+ *   .catch(error => console.error(error));
+ */
+
+export function fetchWeatherIn5days(ville) {
+    const url = `https://api.openweathermap.org/data/2.5/forecast?q=${ville}&units=metric&lang=fr&appid=66ea6a7786eefc2fae098993bffa11da;`
+
+    return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+
+        xhr.open('GET', url, true);
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) { // 4 means request is complete
+                if (xhr.status === 200) { // 200 means success
+                    const data = JSON.parse(xhr.responseText);
+                    resolve(data); // Resolving the promise with the weather data
+                } else {
+                    console.error( ` Error: ${xhr.status} - ${xhr.statusText}`);
+                    reject(new Error(`Error: ${xhr.status} - ${xhr.statusText}`)); // Rejecting the promise with the error
+                }
+            }
+        };
+
+        xhr.send();
+    });
+}
+
