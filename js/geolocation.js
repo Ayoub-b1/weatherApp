@@ -14,12 +14,12 @@ autoLocate().then(coords => {
 //autoLocate();
 **/
 
-async function autoLocate() {
+export async function autoLocate() {
     try {
         const position = await new Promise((resolve, reject) => {
             navigator.geolocation.getCurrentPosition(resolve, reject);
         });
-        const { latitude, longitude } = position.coords;
+        const { latitude, longitude } =  position.coords;
         return { latitude, longitude };
     } catch (error) {
         return { error: "Erreur de localisation : " + error.message };
@@ -69,3 +69,41 @@ function FetchApiByCity(Ville) {
     });
 }
 
+/**
+ * @function fetchWeatherUsingCoordinates
+ * Fetches weather data using the given coordinates (longitude and latitude) from the OpenWeather API.
+ * 
+ * @param {number} longitude - The geographical longitude of the location.
+ * @param {number} latitude - The geographical latitude of the location.
+ * @returns {Promise<Object>} - A Promise that resolves to the weather data in JSON format if the request is successful.
+ * 
+ * @example
+ * fetchWeatherUsingCoordinates(-122.4194, 37.7749)
+ *   .then(data => console.log(data))
+ *   .catch(error => console.error(error));
+ */
+export function fetchWeatherUsingCoordinates(longitude, latitude) {
+    const apiKey = '66ea6a7786eefc2fae098993bffa11da'; // Consider storing this securely
+    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${apiKey}&units=metric;`
+
+    return new Promise((resolve, reject) => {
+        const xhr = new XMLHttpRequest();
+
+        xhr.open('GET', url, true);
+
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) { // 4 means request is complete
+                if (xhr.status === 200) { // 200 means success
+                    const data = JSON.parse(xhr.responseText);
+                    console.log('Weather Data:', data);
+                    resolve(data); // Resolving the promise with the weather data
+                } else {
+                    console.error( ` Error: ${xhr.status} - ${xhr.statusText}`);
+                    reject(new Error(`Error: ${xhr.status} - ${xhr.statusText}`)); // Rejecting the promise with the error
+                }
+            }
+        };
+
+        xhr.send();
+    });
+}

@@ -1,0 +1,208 @@
+/* Style principal du widget météo */
+.widget {
+    background: var(--todo-highlit);
+    color: var(--textcolor);
+    border-radius: 40px;
+    width: 676px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 30px 30px 30px 30px;
+    position: relative;
+
+}
+
+/* Badge pour afficher la localisation (le nom de la ville) */
+.location-badge {
+    background: #742BEC;
+    padding: 8px 15px;
+    border-radius: 30px;
+    font-size: 16px;
+    color: #fff;
+    font-weight: bold;
+    max-width: 100px !important;
+    height: 40px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    gap: 10px;
+}
+
+/* Images des nuages positionnées dans le widget */
+.cloud-img {
+    position: absolute;
+}
+
+#cloud-img1 {
+    width: 60px;
+    top: 45%;
+    right: 65%;
+}
+
+#cloud-img2 {
+    width: 30px;
+    top: 90%;
+    right: 40%;
+}
+
+h1 {
+    font-size: 36px;
+    margin: 0;
+}
+
+/* Conteneur pour le bouton de bascule (toggle switch) */
+.toggle-button-cover {
+    display: table-cell;
+    position: absolute;
+    right: -36%;
+    top: 25px;
+    box-sizing: border-box;
+}
+
+/* Conteneur principal pour le bouton de bascule */
+.button-cover {
+    height: 100px;
+    margin: 20px;
+    background-color: #fff;
+    box-shadow: 0 10px 20px -8px #c5d6d6;
+    border-radius: 4px;
+}
+
+/* Définit les positions des sous-éléments du bouton */
+.button-cover,
+.knobs,
+.layer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+/* Bouton de bascule (toggle) */
+.button {
+    position: relative;
+    top: 50%;
+    width: 88px;
+    height: 40px;
+    margin: -30px 60px 0 auto;
+    overflow: hidden;
+}
+
+.knobs {
+    z-index: 2;
+}
+
+.layer {
+    width: 100%;
+    background-color: #ebf7fc;
+    transition: 0.3s ease all;
+    z-index: 1;
+}
+
+.button.r,
+.button.r .layer {
+    border-radius: 100px;
+}
+
+/* Style du bouton lorsqu'il est cliqué */
+#button-3 .knobs:before {
+    content: "F";
+    position: absolute;
+    top: -3px;
+    left: 0px;
+    width: 48px;
+    height: 46px;
+    color: #fff;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: center;
+    padding: 9px 4px;
+    background-color: #030303;
+    border-radius: 50%;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+#button-3 .knobs:after {
+    content: "C";
+    position: absolute;
+    top: -2px;
+    right: -3px;
+    width: 35px;
+    height: 40px;
+    color: #000;
+    font-size: 15px;
+    font-weight: bold;
+    text-align: left;
+    padding: 10px 4px;
+    background-color: #f4f4f4;
+    border-radius: 50%;
+    transition: background-color 0.3s ease-in-out, color 0.3s ease-in-out;
+}
+
+/* État du bouton activé */
+#button-3 .checkbox:checked+.knobs:before {
+    background-color: #f4f4f4;
+    color: #000;
+}
+
+#button-3 .checkbox:checked+.knobs:after {
+    background-color: #030303;
+    color: #fff;
+    right: 0px;
+    width: 48px;
+    height: 46px;
+    top: -3px;
+    text-align: center;
+}
+
+/* Style de l'image principale */
+.logo>svg {
+    margin: auto;
+    width: 200px;
+    height: 150px;
+    margin-top: 20px;
+    transform: translateX(60px);
+}
+
+/*Sépare les elements entre elles*/
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0px;
+    width: 100%;
+}
+
+.col-6 {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+/* Style des champs de température */
+.temp-display {
+    font-size: 48px;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Style des champs de date */
+.date-field {
+    margin-top: 20px;
+}
+
+/* Conteneur aligné à droite  */
+.col-right {
+    margin-left: auto;
+    text-align: right;
+}
+
+/* Conteneur global pour les widgets et les interactions */
+.switch-container {
+    position: relative;
+}
+/*Conteneur des informations de meteo (en dessous de l'image)*/
+.weather-info {
+    margin: -20px 30px;
+}

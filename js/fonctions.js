@@ -99,13 +99,13 @@ function Ville() {
 
 */
 
-function toggleTheme() {
+export function toggleTheme() {
     const body = document.body;
 
-    body.classList.toggle('dark-theme');
+    body.classList.toggle('light-theme');
 
-    const isDarkMode = body.classList.contains('dark-theme');
-    //TODO : implement using preference to store the preference
+    const isLightTheme = body.classList.contains('light-theme');
+    localStock('theme', isLightTheme ? 'ligth' : 'dark');
 }
 /** 
  * @function applySavedTheme
@@ -115,10 +115,150 @@ function toggleTheme() {
  * 
 
 */
-function applySavedTheme() {
-    // TODO : implement using preference to store the preference
+export  async function  applySavedTheme  ()  {
+    let theme_switch = document.getElementById('switch');
+    const theme = await localRetrieve('theme')
+    theme_switch.setAttribute('checked' , theme === 'ligth')
+    if (theme) {
+        
+        document.body.classList.add(theme === 'ligth' ? 'light-theme' : '')   
+    }
+    theme_switch.addEventListener('click', () => {
+        toggleTheme()
+    })
+}
 
-    if (savedTheme) {
-        document.body.classList.add(savedTheme);
+/**
+ * @function localStock
+ * @description Une fonction qui permet de stocker des données dans le localStorage du navigateur. 
+ * @param {string} key - La clé qui servira à identifier la donnée dans le `localStorage`.
+ * @param {string} value - La valeur à associer à la clé dans le `localStorage`. 
+ * 
+ * @returns {void} La fonction ne retourne aucune valeur,
+ * mais elle affiche une notification dans la console sur l'état du stockage.
+ * 
+ * @example
+ * localStock('username', 'AAAA') - Affiche : "Données stockées : clé = username , valeur = AAAA"
+ * localStock(null, 'BBBB') - Affiche : "Paramètre de fonction non défini"
+ * localStock('username', null) - Affiche : "Paramètre de fonction non défini"
+ * localStock('', '') - Affiche : "Key invalide : doit être une chaîne non vide"
+ 
+ */
+
+export async function localStock(key, value) {
+    if (key === null || value == null) {
+        console.log("Parametre de fonction non définie")
+        return
+    }
+    if (typeof key !== "string" || key === "" ||typeof value !== "string" || value === "") {
+        console.log("Key invalide : doit etre une chaine non vide")
+        return
+    }
+    try {
+        await new Promise((resolve) => {
+                localStorage.setItem(key, value)
+                resolve()
+            console.log(`Données stockée : clé = ${key} , valeur = ${value}`)
+        })
+    }catch(error){
+        console.log("Erreur de stockage",error)
+    }  
+}
+
+/**
+ * @function generateData
+ * @description Extracts and processes necessary information from a weather data JSON object.
+ * @param {object} data - A JSON object containing weather data.
+ * @returns {object} An object with selected and formatted data values.
+ * 
+ * @example
+ * const weatherData = {
+ *     coord: { lon: -7.6, lat: 33.582 },
+ *     weather: [{ id: 800, main: "Clear", description: "clear sky", icon: "01d" }],
+ *     main: { temp: 302.24, feels_like: 300.63, pressure: 1017, humidity: 18 },
+ *     wind: { speed: 4.12, deg: 140 },
+ *     name: "Casablanca",
+ * };
+ * const result = generateData(weatherData);
+ * console.log(result);
+ * // Output:
+ * // {
+ * //   location: "Casablanca",
+ * //   temperature: "29.1",
+ * //   feelsLike: "27.5",
+ * //   weather: "Clear (clear sky)",
+ * //   humidity: "18%",
+ * //   windSpeed: "4.12 m/s",
+ * //   windDirection: "140°"
+ * ....
+ * // }
+ */
+
+export function generateData(data) {
+    if (data) {
+        // Extract necessary information
+        const {
+            name: location,
+            main: { temp, feels_like, pressure, humidity, temp_min, temp_max },
+            weather: [{ main: weatherMain, description }],
+            wind: { speed: windSpeed, deg: windDirection }
+        } = data;
+
+
+        // Return a formatted object
+        return {
+            location,
+            high: temp_max,
+            min: temp_min,
+            temperature: temp,
+            feelsLike: feels_like,
+            weather: `${weatherMain} `,
+            description: description,
+            humidity: `${humidity}`,
+            windSpeed: `${windSpeed} `,
+            windDirection: `${windDirection}`,
+            pressure: `${pressure}`
+        };
+    }
+
+    // Return null if data is invalid
+    return null;
+}
+
+
+
+
+/**
+ * @function localRetrieve
+ * @description Une fonction qui permet de returner des données key  du le localStorage du navigateur. 
+ * @param {string} key - Le cle pour la valeur souhaiter
+ * 
+ * @returns {string} La fonction  retourne value de la key,
+
+ * @example
+ * const username = await localRetrieve("username");
+ */
+
+
+export async function localRetrieve(key) {
+    if (key === null || typeof key !== "string" || key === "") {
+        console.log("Clé invalide : doit être une chaîne non vide");
+        return null; 
+    }
+    try {
+        const value = await new Promise((resolve) => {
+            const data = localStorage.getItem(key);
+            resolve(data);
+        });
+        if (value === null) {
+            console.log(`Aucune donnée trouvée pour la clé : ${key}`);
+        } else {
+            console.log(`Données récupérées : clé = ${key}, valeur = ${value}`);
+        }
+        return value;
+    } catch (error) {
+        console.log("Erreur de récupération", error);
+        return null;
     }
 }
+
