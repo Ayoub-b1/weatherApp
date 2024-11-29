@@ -242,7 +242,18 @@ export function generateData(data) {
 **/
 export const displayData = (generateData, weatherData) => {
     let data = generateData(weatherData)
-    console.log(data)
+
+    let currentDate = new Date();
+    const day = String(currentDate.getDate()).padStart(2, '0');
+    const monthNames = ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"];
+    const month = monthNames[currentDate.getMonth()];
+    const year = String(currentDate.getFullYear());
+
+    const weekdayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const weekday = weekdayNames[currentDate.getDay()];
+
+    document.getElementById('day').textContent = weekday
+    document.getElementById('date').textContent = `${day} ${month} , ${year}`
     document.getElementById('location').textContent = data.location
     document.getElementById('icon').setAttribute("src", data.icon || "./assets/images/logo_icon.png");
     document.getElementById('temperature').textContent = `${data.temperature}°`

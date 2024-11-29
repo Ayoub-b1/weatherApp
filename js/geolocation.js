@@ -1,3 +1,5 @@
+import { afficherAlert } from "./fonctions.js";
+
 /**
 @function autoLocate
 @description definire Latitude + Longitude automatiquement d'utilisateur
@@ -14,6 +16,7 @@ autoLocate().then(coords => {
 //autoLocate();
 **/
 
+
 export async function autoLocate() {
     try {
         const position = await new Promise((resolve, reject) => {
@@ -22,6 +25,7 @@ export async function autoLocate() {
         const { latitude, longitude } =  position.coords;
         return { latitude, longitude };
     } catch (error) {
+        afficherAlert('warning' , error.message)
         return { error: "Erreur de localisation : " + error.message };
     }
 }
@@ -98,7 +102,7 @@ export function fetchWeatherUsingCoordinates(longitude, latitude) {
                     console.log('Weather Data:', data);
                     resolve(data); // Resolving the promise with the weather data
                 } else {
-                    console.error( ` Error: ${xhr.status} - ${xhr.statusText}`);
+                    afficherAlert('danger', 'Error: ' + xhr.status + ' - ' + xhr.statusText);
                     reject(new Error(`Error: ${xhr.status} - ${xhr.statusText}`)); // Rejecting the promise with the error
                 }
             }

@@ -63,7 +63,7 @@
                 <div class="col-4 p-0 align-items-center justify-content-start d-flex">
                   <div class="location-badge m-0 px-2">
                     <img src="./assets/images/Icon-Set-Filled.png" alt="Location Icon">
-                    <span id="location">India</span>
+                    <span id="location" class="loading">-----</span>
                   </div>
                 </div>
                 <div class="col-4 p-0 align-items-center justify-content-end d-flex">
@@ -82,8 +82,8 @@
               <div class="row d-flex align-items-center justify-content-between">
                 <div class="col-4 p-0 align-items-center justify-content-start d-flex">
                   <div class="date-field">
-                    <h1 id="day">Monday</h1>
-                    <p id="date">24 Dec, 2023</p>
+                    <h1 id="day" class="loading">-----</h1>
+                    <p id="date" class="loading">-- ---, ----</p>
                   </div>
                 </div>
                 <div class="col-4 p-0 align-items-center justify-content-end d-flex">
@@ -96,20 +96,17 @@
               <div class="row d-flex align-items-center justify-content-between">
                 <div class="col-4 p-0 align-items-center justify-content-start d-flex">
                   <div class="temperature-field">
-                    <h1 class="temp-display" id="temperature">26°C</h1>
-                    <p id="min-high"></p>
+                    <h1 class="temp-display lh-base" id="temperature">--</h1>
+                    <p id="min-high" class="loading"></p>
                   </div>
                 </div>
                 <div class="col-5 p-0 align-items-center justify-content-end d-flex">
                   <div class="weather-info text-end mx-0">
-                    <h1 id="description-w1">Cloudy</h1>
-                    <p id="feelsLike">Feels Like 26</p>
+                    <h1 id="description-w1" class="fs-2 loading">------</h1>
+                    <p id="feelsLike" class="loading">Feels Like --</p>
                   </div>
                 </div>
               </div>
-
-
-
             </div>
 
           </div>
@@ -118,22 +115,22 @@
           <div class=" widget">
             <p class="title">Today Highlight</p>
             <div class="d-flex  gap-4 flex-wrap align-items-center justify-content-evenly   ">
-              <div class="w-50 box">
+              <div class="w-50 gap-0  box">
                 <p>Description</p>
-                <span class="font-40" id="description-w2">clear sky</h1>
+                <span class="fs-3  loading" id="description-w2">---- ---</h1>
               </div>
               <div class="w-50 box">
                 <p>pressure</p>
-                <h1 class="ms align-items-end"> <span class="ms" id="pressure">1014</span> <span>hPa</span></h1>
+                <h1 class="ms align-items-end"> <span class="ms loading" id="pressure">----</span> <span>hPa</span></h1>
               </div>
               <div class="w-50 gap-0 box">
                 <p>Wind Statue</p>
-                <h1 class="ms"><span class="ms" id="wind-speed">26</span> <span>m/s</span></h1>
-                <p>direction : <span id="wind-direction" class="fs-6">140</span> </p>
+                <h1 class="ms"><span class="ms loading" id="wind-speed">--</span> <span>m/s</span></h1>
+                <p>direction : <span id="wind-direction" class="fs-6 loading">--</span> </p>
               </div>
               <div class="w-50 box">
                 <p>Humidity</p>
-                <h1 id="humidity">24 <span>%</span></h1>
+                <h1 id="humidity" class="loading">-- <span>%</span></h1>
               </div>
 
             </div>
