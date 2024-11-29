@@ -199,8 +199,13 @@ export function generateData(data) {
         // Extract necessary information
         const {
             name: location,
+<<<<<<< HEAD
             main: { temp, feels_like, pressure, humidity, temp_min, temp_max, icon },
             weather: [{ main: weatherMain, description }],
+=======
+            main: { temp, feels_like, pressure, humidity, temp_min, temp_max },
+            weather: [{ main: weatherMain, description  }],
+>>>>>>> a1053ff (fixed a typo)
             wind: { speed: windSpeed, deg: windDirection }
         } = data;
 
@@ -214,7 +219,11 @@ export function generateData(data) {
             icon,
             feelsLike: feels_like,
             weather: `${weatherMain} `,
+<<<<<<< HEAD
             description: description,
+=======
+            description : description ,
+>>>>>>> a1053ff (fixed a typo)
             humidity: `${humidity}`,
             windSpeed: `${windSpeed} `,
             windDirection: `${windDirection}`,
