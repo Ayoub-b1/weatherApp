@@ -302,3 +302,58 @@ export async function localRetrieve(key) {
     }
 }
 
+
+/**
+ * @function DailyTemperaturesTime
+ * @description Extrait la température la plus proche d'une heure cible pour chaque jour 
+ * @param {object} data - Un objet JSON contenant des données de prévisions météorologiques.
+ * @param {string} targetTime - L'heure cible au format "HH:mm:ss" (exemple, "21:00:00").
+ * @returns {number[]} Un tableau contenant les températures correspondant à l'heure cible ou à l'heure la plus proche pour chaque jour.
+ * 
+ * @example
+ * const weatherData = {
+ *     "list": [
+ *         { "dt_txt": "2024-11-29 00:00:00", "main": { "temp": 15.42 } },
+ *         { "dt_txt": "2024-11-29 21:00:00", "main": { "temp": 18.91 } },
+ *         { "dt_txt": "2024-11-30 09:00:00", "main": { "temp": 12.34 } },
+ *         { "dt_txt": "2024-11-30 21:00:00", "main": { "temp": 20.54 } }
+ *     ]
+ * };
+ * const result = DailyTemperaturesTime(weatherData, "21:00:00");
+ * console.log(result);
+ * // Résultat :
+ * // [18.91, 20.54]
+ */
+
+
+function DailyTemperaturesTime(data, targetTime) {
+    const temperatures = [];
+    const dailyEntries = {};
+
+    data.list.forEach((entry) => {
+        const [date, time] = entry.dt_txt.split(" ");
+        if (!dailyEntries[date]) {
+            dailyEntries[date] = []
+        }
+        dailyEntries[date].push({ time, temp: entry.main.temp });
+    });
+
+    Object.values(dailyEntries).forEach((entries) => {
+        entries.sort((a, b) => a.time.localeCompare(b.time));
+
+        let selectedTemp = null;
+        for (let i = entries.length - 1; i >= 0; i--) {
+            if (entries[i].time <= targetTime) {
+                selectedTemp = entries[i].temp;
+                break;
+            }
+        }
+        if (!selectedTemp) {
+            selectedTemp = entries[0].temp;
+        }
+
+        temperatures.push(selectedTemp);
+    });
+
+    return temperatures;
+}
