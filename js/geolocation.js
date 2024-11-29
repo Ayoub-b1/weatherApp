@@ -46,7 +46,7 @@ export async function autoLocate() {
  *   .catch(erreur => console.error(erreur));
  */
 
-function FetchApiByCity(Ville) {
+export function FetchApiByCity(Ville) {
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${Ville}&appid=66ea6a7786eefc2fae098993bffa11da&units=metric`; // URL définie à l'intérieur de la fonction
 
     return new Promise((resolve, reject) => {
@@ -126,7 +126,7 @@ export function fetchWeatherUsingCoordinates(longitude, latitude) {
  */
 
 export function fetchWeatherIn5days(ville) {
-    const url = `https://api.openweathermap.org/data/2.5/forecast?q=${ville}&units=metric&lang=fr&appid=66ea6a7786eefc2fae098993bffa11da;`
+    const url = `https://api.openweathermap.org/data/2.5/forecast?q=${ville}&lang=fr&appid=66ea6a7786eefc2fae098993bffa11da`;
 
     return new Promise((resolve, reject) => {
         const xhr = new XMLHttpRequest();

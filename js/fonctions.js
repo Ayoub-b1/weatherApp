@@ -326,7 +326,7 @@ export async function localRetrieve(key) {
  */
 
 
-function DailyTemperaturesTime(data, targetTime) {
+export function DailyTemperaturesTime(data, targetTime) {
     const temperatures = [];
     const dailyEntries = {};
 
@@ -356,4 +356,15 @@ function DailyTemperaturesTime(data, targetTime) {
     });
 
     return temperatures;
+}
+
+
+export function dataIsLoading (){
+
+    let places = document.querySelectorAll('.loading')
+
+    places.forEach(place => {
+        place.textContent = '-- --'
+    })
+
 }
