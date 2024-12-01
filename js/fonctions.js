@@ -156,6 +156,7 @@ export async function localStock(key, value) {
     }
     try {
         await new Promise((resolve) => {
+<<<<<<< HEAD
             localStorage.setItem(key, value)
             resolve()
             console.log(`Données stockée : clé = ${key} , valeur = ${value}`)
@@ -163,6 +164,15 @@ export async function localStock(key, value) {
     } catch (error) {
         console.log("Erreur de stockage", error)
     }
+=======
+                localStorage.setItem(key, value)
+                resolve()
+            console.log(`Données stockée : clé = ${key} , valeur = ${value}`)
+        })
+    }catch(error){
+        console.log("Erreur de stockage",error)
+    }  
+>>>>>>> e0ab6b4 (Ajout de la fonction localStock asynchrone)
 }
 
 /**
@@ -204,8 +214,12 @@ export function generateData(data) {
             weather: [{ main: weatherMain, description }],
 =======
             main: { temp, feels_like, pressure, humidity, temp_min, temp_max },
+<<<<<<< HEAD
             weather: [{ main: weatherMain, description  }],
 >>>>>>> a1053ff (fixed a typo)
+=======
+            weather: [{ main: weatherMain, description }],
+>>>>>>> e0ab6b4 (Ajout de la fonction localStock asynchrone)
             wind: { speed: windSpeed, deg: windDirection }
         } = data;
 
@@ -220,10 +234,14 @@ export function generateData(data) {
             feelsLike: feels_like,
             weather: `${weatherMain} `,
 <<<<<<< HEAD
+<<<<<<< HEAD
             description: description,
 =======
             description : description ,
 >>>>>>> a1053ff (fixed a typo)
+=======
+            description: description,
+>>>>>>> e0ab6b4 (Ajout de la fonction localStock asynchrone)
             humidity: `${humidity}`,
             windSpeed: `${windSpeed} `,
             windDirection: `${windDirection}`,
