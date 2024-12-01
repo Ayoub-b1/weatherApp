@@ -317,3 +317,37 @@ function DailyTemperaturesTime(data, targetTime) {
 
     return temperatures;
 }
+
+/**
+ * @function fetchAndInsert
+ * @description - Fonction pour récupérer des données depuis une API et les insérer dans une cible
+ * @param {string} apiUrl - url pour récupérer les données
+ * @param {string} targetId - id de l'element html pour inserer les données
+ * @returns {void} - Ne retourne rien , mais affiche des elements directement sur l'html cible
+ * @example
+ * // Exemple d'un conteneur HTML où afficher les données :
+ * // <div id="weather"></div>
+ * 
+ * const apiUrl = "https://api.openweathermap.org/data/2.5/weather?q=Paris&appid=TON_API_KEY";
+ * fetchAndDisplayData(apiUrl, "weather")
+ * 
+ * // Exemple de données affichées dans le conteneur :
+ * {
+ *    "coord": { "lon": 2.3488, "lat": 48.8534 },
+ *    "weather": [{ "description": "nuageux", "icon": "04d" }],
+ *    "main": { "temp": 280.32, "feels_like": 278.59 }
+ * }
+ * 
+ */
+
+export async function fetchAndInsert(apiUrl, targetId) {
+    try {
+        const response = await fetch(apiUrl)
+        const data = await response.json()
+
+        const target = document.getElementById(targetId)
+        target.innerText = JSON.stringify(data, null, 2)
+    } catch (error) {
+        console.log("Erreur : ", error)
+    }
+}
