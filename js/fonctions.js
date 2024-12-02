@@ -291,3 +291,34 @@ export async function localRetrieve(key) {
     }
 }
 
+/**
+ * @function saveToLocalStorage
+ * @description A function that saves the value of search to the localStorage .
+ * @param {string} value city  
+ * @example saveToLocalStorage('Rabat');
+ */
+function saveToLocalStorage(ville) {
+    let searchList = JSON.parse(localStorage.getItem('userSearch')) || [];
+    if (ville) { 
+        searchList.push(ville);
+        if (searchList.length > 4) {
+            searchList.shift();
+        }
+    }
+    localStorage.setItem('userSearch', JSON.stringify(searchList));
+}
+
+/**
+ * @function loadFromLocalStorage
+ * @description A function that retrieves the value from the localStorage.
+ * @returns {string} The value of search.
+ * 
+ * @example console.log(loadFromLocalStorage()); 
+ */
+function loadFromLocalStorage() {
+    let savedValue = localStorage.getItem('userSearch') ? localStorage.getItem('userSearch') : '' ;
+    return savedValue
+}
+
+// console.log(loadFromLocalStorage())
+

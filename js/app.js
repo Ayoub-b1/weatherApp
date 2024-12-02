@@ -5,11 +5,7 @@ import { autoLocate, fetchWeatherUsingCoordinates } from "./geolocation.js";
 window.addEventListener('DOMContentLoaded', async () => {
 
    
-
-
     let currWeather = {}
-
-
     applySavedTheme()
     try {
 
