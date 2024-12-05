@@ -5,10 +5,11 @@
 * {
     font-family: var(--textfont) !important;
 }
-p{
+p, h1, h2, h3, h4, h5, h6 {
     margin-bottom: 0 !important;
 }
 :root {
+    --back : #14203A;
     --background: #060C1A;
     --todo-highlit: linear-gradient(145deg, #162850, #121A2D);
     --card-todohighlit: var(--secondery-color, #0E1421);
@@ -101,4 +102,34 @@ body {
     border-right: 10px solid transparent;
     border-bottom: 15px solid #ffffff;
     z-index: 10000;
+}
+.bg-secondary{
+    background-color: var(--background) !important;
+}
+.img{
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+}
+.img-mini{
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+}
+.big-img{
+    width: 120px !important;
+    height: 120px !important;
+}
+.end-5{
+    right: 2em !important;
+}
+.top-25{
+    top: 25% !important;
+}
+.bg-prim{
+    background-color: var(--todo-highlit) !important;
+    background: var(--todo-highlit) !important;
+}
+.text-prim{
+    color: var(--textcolor) !important;
 }

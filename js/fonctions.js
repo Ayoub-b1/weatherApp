@@ -1,3 +1,4 @@
+import { FetchApiByCity } from "./geolocation.js";
 
 /**
  * @function afficherAlert
@@ -73,21 +74,69 @@ function showNotification(title, body, icon) {
  * @function Ville
  * @description Récupere la valeur de la localisation d'un input et retourne sa valeur
  * 
- * @return {ville} - La valeur de la ville
+ * @return {void}
  * 
- * @exemple
- * //Retourne Rabat
+
 */
 
+export async function Ville() {
+    return new Promise((resolve, reject) => {
+        let villeInput = document.getElementById("inputville");
+        let ville = '';
 
-function Ville() {
-    let ville = document.getElementById("InputVille").value;
+        villeInput.addEventListener("keyup", async (event) => {
+            if (event.key === 'Enter') {
+                const villeValue = villeInput.value.trim();
 
-    if (ville.trim() === "") {
-        afficherAlert('Veuillez entrer une ville valide', 'danger')
-        return
-    }
-    return ville
+                if (villeValue === "") {
+                    afficherAlert('Veuillez entrer une ville valide', 'danger');
+                    reject('No valid city entered');  // Reject if no valid city entered
+                } else {
+                    ville = villeValue;  // Store the valid city value
+                    localStock('city', ville);  // Store the city in localStorage
+
+                    await FetchApiByCity(ville).then((data) => {
+                        displayData(generateData, data);  // Display weather data
+                       
+                    }).catch((error) => {
+                        reject('Failed to fetch weather data');
+                    });
+                }
+            }
+        });
+    });
+}
+
+/** 
+ * @function Search
+ * @description Récupere la valeur de la localisation d'un input et retourne sa valeur
+ * 
+ * @return {void} 
+ * 
+
+*/
+
+export  function Search() {
+        let villeInput = document.getElementById("inputville");
+        let ville = '';
+
+        villeInput.addEventListener("keyup", async (event) => {
+            if (event.key === 'Enter') {
+                const villeValue = villeInput.value.trim();
+
+                if (villeValue === "") {
+                    afficherAlert('Veuillez entrer une ville valide', 'danger');
+                   
+                } else {
+                    ville = villeValue;  // Store the valid city value
+                    localStock('city', ville);  // Store the city in localStorage
+                    dataIsLoading()
+                    await FetchApiByCity(ville).then((data) => {
+                        displayData(generateData, data);  // Display weather data
+                       
+                    
+        })}}
+    });
 }
 
 /** 
@@ -256,10 +305,10 @@ export const displayData = (generateData, weatherData) => {
     document.getElementById('date').textContent = `${day} ${month} , ${year}`
     document.getElementById('location').textContent = data.location
     document.getElementById('icon').setAttribute("src", data.icon || "./assets/images/logo_icon.png");
-    document.getElementById('temperature').textContent = `${data.temperature}°`
-    document.getElementById('feelsLike').textContent = `Feels Like ${data.feelsLike}`
+    document.getElementById('temperature').textContent = `${data.temperature} °C`
+    document.getElementById('feelsLike').textContent = `Feels Like ${data.feelsLike} °C`
     document.getElementById('description-w1').textContent = data.description
-    document.getElementById('min-high').textContent = `High: ${data.high}° | Low:${data.min}°`
+    document.getElementById('min-high').textContent = `High: ${data.high} °C | Low:${data.min} °C`
     document.getElementById('description-w2').textContent = data.description
     document.getElementById('pressure').textContent = `${data.pressure} `
     document.getElementById('humidity').textContent = `${data.humidity} %`
@@ -358,8 +407,14 @@ export function DailyTemperaturesTime(data, targetTime) {
     return temperatures;
 }
 
+/** 
+ * @function dataIsLoading
+ * @description changer le text pour indiquer le chargement 
+ * @return {void} 
+ * 
 
-export function dataIsLoading (){
+*/
+export function dataIsLoading() {
 
     let places = document.querySelectorAll('.loading')
 
@@ -367,4 +422,50 @@ export function dataIsLoading (){
         place.textContent = '-- --'
     })
 
+}
+
+
+/** 
+ * @function SwithcTemp
+ * @description changer la temperature en °C ou °F
+ * 
+ * @return {void} 
+ * 
+
+*/
+
+export function SwithcTemp() {
+    let tempswitch = document.querySelector('#toggle-switch');
+
+    // Function to convert Celsius to Fahrenheit or vice versa
+    function switchT(val, toFahrenheit) {
+        // Parse the value to a number, removing the degree symbol and potential whitespace
+        val = parseFloat(val);
+
+        if (toFahrenheit) {
+            return val * 1.8 + 32;
+        } else {
+            return (val - 32) / 1.8;
+        }
+    }
+
+    // Add event listener for the toggle switch
+    tempswitch.addEventListener('change', () => {
+        const isChecked = tempswitch.checked;
+        const tempElements = document.querySelectorAll('.temp');
+
+        tempElements.forEach(tempElement => {
+            // Get the current text content and remove any non-numeric characters (like °C or °F)
+            let currentTemp = tempElement.textContent.replace(/[^\d.-]/g, '');
+
+            // Convert the temperature based on the switch state
+            if (isChecked) {
+                // Convert to Fahrenheit
+                tempElement.textContent = `${switchT(currentTemp, true).toFixed(2)} °F`;
+            } else {
+                // Convert to Celsius
+                tempElement.textContent = `${switchT(currentTemp, false).toFixed(2)} °C`;
+            }
+        });
+    });
 }
