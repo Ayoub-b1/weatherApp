@@ -97,6 +97,7 @@ export async function Ville() {
 
                     await FetchApiByCity(ville).then((data) => {
                         displayData(generateData, data);  // Display weather data
+                        resolve()
                        
                     }).catch((error) => {
                         reject('Failed to fetch weather data');

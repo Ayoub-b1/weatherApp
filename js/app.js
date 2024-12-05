@@ -44,6 +44,7 @@ window.addEventListener('DOMContentLoaded', async () => {
                         afficherAlert('info', 'Selectioner une ville ou activer votre localisation')
                         
                         Ville().then(() => {
+                            console.log('removing');
                             overlay.remove()
                             document.querySelector('.search-bar').classList.remove('hight')
                         })
